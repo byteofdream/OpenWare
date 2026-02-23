@@ -1,0 +1,104 @@
+[
+{
+  "directory": "/home/dozirod/Documents/OpenWare/build_ninja",
+  "command": "/usr/bin/c++ -DOW_ENABLE_AUDIO=1 -I/home/dozirod/Documents/OpenWare/include -I/usr/include/x86_64-linux-gnu/SDL2 -I/usr/include/SDL2 -std=c++17 -D_GNU_SOURCE=1 -D_REENTRANT -Wall -Wextra -Wpedantic -o CMakeFiles/OpenWareEngine.dir/src/main.cpp.o -c /home/dozirod/Documents/OpenWare/src/main.cpp",
+  "file": "/home/dozirod/Documents/OpenWare/src/main.cpp",
+  "output": "/home/dozirod/Documents/OpenWare/build_ninja/CMakeFiles/OpenWareEngine.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/dozirod/Documents/OpenWare/build_ninja",
+  "command": "/usr/bin/c++ -DOW_ENABLE_AUDIO=1 -I/home/dozirod/Documents/OpenWare/include -I/usr/include/x86_64-linux-gnu/SDL2 -I/usr/include/SDL2 -std=c++17 -D_GNU_SOURCE=1 -D_REENTRANT -Wall -Wextra -Wpedantic -o CMakeFiles/OpenWareEngine.dir/src/Renderer/Shader.cpp.o -c /home/dozirod/Documents/OpenWare/src/Renderer/Shader.cpp",
+  "file": "/home/dozirod/Documents/OpenWare/src/Renderer/Shader.cpp",
+  "output": "/home/dozirod/Documents/OpenWare/build_ninja/CMakeFiles/OpenWareEngine.dir/src/Renderer/Shader.cpp.o"
+},
+{
+  "directory": "/home/dozirod/Documents/OpenWare/build_ninja",
+  "command": "/usr/bin/c++ -DOW_ENABLE_AUDIO=1 -I/home/dozirod/Documents/OpenWare/include -I/usr/include/x86_64-linux-gnu/SDL2 -I/usr/include/SDL2 -std=c++17 -D_GNU_SOURCE=1 -D_REENTRANT -Wall -Wextra -Wpedantic -o CMakeFiles/OpenWareEngine.dir/src/Renderer/Mesh.cpp.o -c /home/dozirod/Documents/OpenWare/src/Renderer/Mesh.cpp",
+  "file": "/home/dozirod/Documents/OpenWare/src/Renderer/Mesh.cpp",
+  "output": "/home/dozirod/Documents/OpenWare/build_ninja/CMakeFiles/OpenWareEngine.dir/src/Renderer/Mesh.cpp.o"
+},
+{
+  "directory": "/home/dozirod/Documents/OpenWare/build_ninja",
+  "command": "/usr/bin/c++ -DOW_ENABLE_AUDIO=1 -I/home/dozirod/Documents/OpenWare/include -I/usr/include/x86_64-linux-gnu/SDL2 -I/usr/include/SDL2 -std=c++17 -D_GNU_SOURCE=1 -D_REENTRANT -Wall -Wextra -Wpedantic -o CMakeFiles/OpenWareEngine.dir/src/Renderer/Material.cpp.o -c /home/dozirod/Documents/OpenWare/src/Renderer/Material.cpp",
+  "file": "/home/dozirod/Documents/OpenWare/src/Renderer/Material.cpp",
+  "output": "/home/dozirod/Documents/OpenWare/build_ninja/CMakeFiles/OpenWareEngine.dir/src/Renderer/Material.cpp.o"
+},
+{
+  "directory": "/home/dozirod/Documents/OpenWare/build_ninja",
+  "command": "/usr/bin/c++ -DOW_ENABLE_AUDIO=1 -I/home/dozirod/Documents/OpenWare/include -I/usr/include/x86_64-linux-gnu/SDL2 -I/usr/include/SDL2 -std=c++17 -D_GNU_SOURCE=1 -D_REENTRANT -Wall -Wextra -Wpedantic -o CMakeFiles/OpenWareEngine.dir/src/Renderer/Renderer.cpp.o -c /home/dozirod/Documents/OpenWare/src/Renderer/Renderer.cpp",
+  "file": "/home/dozirod/Documents/OpenWare/src/Renderer/Renderer.cpp",
+  "output": "/home/dozirod/Documents/OpenWare/build_ninja/CMakeFiles/OpenWareEngine.dir/src/Renderer/Renderer.cpp.o"
+},
+{
+  "directory": "/home/dozirod/Documents/OpenWare/build_ninja",
+  "command": "/usr/bin/c++ -DOW_ENABLE_AUDIO=1 -I/home/dozirod/Documents/OpenWare/include -I/usr/include/x86_64-linux-gnu/SDL2 -I/usr/include/SDL2 -std=c++17 -D_GNU_SOURCE=1 -D_REENTRANT -Wall -Wextra -Wpedantic -o CMakeFiles/OpenWareEngine.dir/src/Scene/Camera.cpp.o -c /home/dozirod/Documents/OpenWare/src/Scene/Camera.cpp",
+  "file": "/home/dozirod/Documents/OpenWare/src/Scene/Camera.cpp",
+  "output": "/home/dozirod/Documents/OpenWare/build_ninja/CMakeFiles/OpenWareEngine.dir/src/Scene/Camera.cpp.o"
+},
+{
+  "directory": "/home/dozirod/Documents/OpenWare/build_ninja",
+  "command": "/usr/bin/c++ -DOW_ENABLE_AUDIO=1 -I/home/dozirod/Documents/OpenWare/include -I/usr/include/x86_64-linux-gnu/SDL2 -I/usr/include/SDL2 -std=c++17 -D_GNU_SOURCE=1 -D_REENTRANT -Wall -Wextra -Wpedantic -o CMakeFiles/OpenWareEngine.dir/src/Scene/Entity.cpp.o -c /home/dozirod/Documents/OpenWare/src/Scene/Entity.cpp",
+  "file": "/home/dozirod/Documents/OpenWare/src/Scene/Entity.cpp",
+  "output": "/home/dozirod/Documents/OpenWare/build_ninja/CMakeFiles/OpenWareEngine.dir/src/Scene/Entity.cpp.o"
+},
+{
+  "directory": "/home/dozirod/Documents/OpenWare/build_ninja",
+  "command": "/usr/bin/c++ -DOW_ENABLE_AUDIO=1 -I/home/dozirod/Documents/OpenWare/include -I/usr/include/x86_64-linux-gnu/SDL2 -I/usr/include/SDL2 -std=c++17 -D_GNU_SOURCE=1 -D_REENTRANT -Wall -Wextra -Wpedantic -o CMakeFiles/OpenWareEngine.dir/src/Scene/Scene.cpp.o -c /home/dozirod/Documents/OpenWare/src/Scene/Scene.cpp",
+  "file": "/home/dozirod/Documents/OpenWare/src/Scene/Scene.cpp",
+  "output": "/home/dozirod/Documents/OpenWare/build_ninja/CMakeFiles/OpenWareEngine.dir/src/Scene/Scene.cpp.o"
+},
+{
+  "directory": "/home/dozirod/Documents/OpenWare/build_ninja",
+  "command": "/usr/bin/c++ -DOW_ENABLE_AUDIO=1 -I/home/dozirod/Documents/OpenWare/include -I/usr/include/x86_64-linux-gnu/SDL2 -I/usr/include/SDL2 -std=c++17 -D_GNU_SOURCE=1 -D_REENTRANT -Wall -Wextra -Wpedantic -o CMakeFiles/OpenWareEngine.dir/src/Physics/PhysicsSystem.cpp.o -c /home/dozirod/Documents/OpenWare/src/Physics/PhysicsSystem.cpp",
+  "file": "/home/dozirod/Documents/OpenWare/src/Physics/PhysicsSystem.cpp",
+  "output": "/home/dozirod/Documents/OpenWare/build_ninja/CMakeFiles/OpenWareEngine.dir/src/Physics/PhysicsSystem.cpp.o"
+},
+{
+  "directory": "/home/dozirod/Documents/OpenWare/build_ninja",
+  "command": "/usr/bin/c++ -DOW_ENABLE_AUDIO=1 -I/home/dozirod/Documents/OpenWare/include -I/usr/include/x86_64-linux-gnu/SDL2 -I/usr/include/SDL2 -std=c++17 -D_GNU_SOURCE=1 -D_REENTRANT -Wall -Wextra -Wpedantic -o CMakeFiles/OpenWareEngine.dir/src/Audio/AudioSystem.cpp.o -c /home/dozirod/Documents/OpenWare/src/Audio/AudioSystem.cpp",
+  "file": "/home/dozirod/Documents/OpenWare/src/Audio/AudioSystem.cpp",
+  "output": "/home/dozirod/Documents/OpenWare/build_ninja/CMakeFiles/OpenWareEngine.dir/src/Audio/AudioSystem.cpp.o"
+},
+{
+  "directory": "/home/dozirod/Documents/OpenWare/build_ninja",
+  "command": "/usr/bin/c++ -DOW_ENABLE_AUDIO=1 -I/home/dozirod/Documents/OpenWare/include -I/usr/include/x86_64-linux-gnu/SDL2 -I/usr/include/SDL2 -std=c++17 -D_GNU_SOURCE=1 -D_REENTRANT -Wall -Wextra -Wpedantic -o CMakeFiles/OpenWareEngine.dir/src/Script/LuaScriptSystem.cpp.o -c /home/dozirod/Documents/OpenWare/src/Script/LuaScriptSystem.cpp",
+  "file": "/home/dozirod/Documents/OpenWare/src/Script/LuaScriptSystem.cpp",
+  "output": "/home/dozirod/Documents/OpenWare/build_ninja/CMakeFiles/OpenWareEngine.dir/src/Script/LuaScriptSystem.cpp.o"
+},
+{
+  "directory": "/home/dozirod/Documents/OpenWare/build_ninja",
+  "command": "/usr/bin/c++ -DOW_ENABLE_AUDIO=1 -I/home/dozirod/Documents/OpenWare/include -I/usr/include/x86_64-linux-gnu/SDL2 -I/usr/include/SDL2 -std=c++17 -D_GNU_SOURCE=1 -D_REENTRANT -Wall -Wextra -Wpedantic -o CMakeFiles/OpenWareEngine.dir/src/Input/Input.cpp.o -c /home/dozirod/Documents/OpenWare/src/Input/Input.cpp",
+  "file": "/home/dozirod/Documents/OpenWare/src/Input/Input.cpp",
+  "output": "/home/dozirod/Documents/OpenWare/build_ninja/CMakeFiles/OpenWareEngine.dir/src/Input/Input.cpp.o"
+},
+{
+  "directory": "/home/dozirod/Documents/OpenWare/build_ninja",
+  "command": "/usr/bin/c++ -DOW_ENABLE_AUDIO=1 -I/home/dozirod/Documents/OpenWare/include -I/usr/include/x86_64-linux-gnu/SDL2 -I/usr/include/SDL2 -std=c++17 -D_GNU_SOURCE=1 -D_REENTRANT -Wall -Wextra -Wpedantic -o CMakeFiles/OpenWareEngine.dir/src/Resource/OBJLoader.cpp.o -c /home/dozirod/Documents/OpenWare/src/Resource/OBJLoader.cpp",
+  "file": "/home/dozirod/Documents/OpenWare/src/Resource/OBJLoader.cpp",
+  "output": "/home/dozirod/Documents/OpenWare/build_ninja/CMakeFiles/OpenWareEngine.dir/src/Resource/OBJLoader.cpp.o"
+},
+{
+  "directory": "/home/dozirod/Documents/OpenWare/build_ninja",
+  "command": "/usr/bin/c++ -DOW_ENABLE_AUDIO=1 -I/home/dozirod/Documents/OpenWare/include -I/usr/include/x86_64-linux-gnu/SDL2 -I/usr/include/SDL2 -std=c++17 -D_GNU_SOURCE=1 -D_REENTRANT -Wall -Wextra -Wpedantic -o CMakeFiles/OpenWareEngine.dir/src/Resource/TextureLoader.cpp.o -c /home/dozirod/Documents/OpenWare/src/Resource/TextureLoader.cpp",
+  "file": "/home/dozirod/Documents/OpenWare/src/Resource/TextureLoader.cpp",
+  "output": "/home/dozirod/Documents/OpenWare/build_ninja/CMakeFiles/OpenWareEngine.dir/src/Resource/TextureLoader.cpp.o"
+},
+{
+  "directory": "/home/dozirod/Documents/OpenWare/build_ninja",
+  "command": "/usr/bin/c++ -DOW_ENABLE_AUDIO=1 -I/home/dozirod/Documents/OpenWare/include -I/usr/include/x86_64-linux-gnu/SDL2 -I/usr/include/SDL2 -std=c++17 -D_GNU_SOURCE=1 -D_REENTRANT -Wall -Wextra -Wpedantic -o CMakeFiles/OpenWareEngine.dir/src/Resource/MaterialLoader.cpp.o -c /home/dozirod/Documents/OpenWare/src/Resource/MaterialLoader.cpp",
+  "file": "/home/dozirod/Documents/OpenWare/src/Resource/MaterialLoader.cpp",
+  "output": "/home/dozirod/Documents/OpenWare/build_ninja/CMakeFiles/OpenWareEngine.dir/src/Resource/MaterialLoader.cpp.o"
+},
+{
+  "directory": "/home/dozirod/Documents/OpenWare/build_ninja",
+  "command": "/usr/bin/c++ -DOW_ENABLE_AUDIO=1 -I/home/dozirod/Documents/OpenWare/include -I/usr/include/x86_64-linux-gnu/SDL2 -I/usr/include/SDL2 -std=c++17 -D_GNU_SOURCE=1 -D_REENTRANT -Wall -Wextra -Wpedantic -o CMakeFiles/OpenWareEngine.dir/src/UI/AboutUI.cpp.o -c /home/dozirod/Documents/OpenWare/src/UI/AboutUI.cpp",
+  "file": "/home/dozirod/Documents/OpenWare/src/UI/AboutUI.cpp",
+  "output": "/home/dozirod/Documents/OpenWare/build_ninja/CMakeFiles/OpenWareEngine.dir/src/UI/AboutUI.cpp.o"
+},
+{
+  "directory": "/home/dozirod/Documents/OpenWare/build_ninja",
+  "command": "/usr/bin/c++ -DOW_ENABLE_AUDIO=1 -I/home/dozirod/Documents/OpenWare/include -I/usr/include/x86_64-linux-gnu/SDL2 -I/usr/include/SDL2 -std=c++17 -D_GNU_SOURCE=1 -D_REENTRANT -Wall -Wextra -Wpedantic -o CMakeFiles/OpenWareEngine.dir/src/UI/DebugUI.cpp.o -c /home/dozirod/Documents/OpenWare/src/UI/DebugUI.cpp",
+  "file": "/home/dozirod/Documents/OpenWare/src/UI/DebugUI.cpp",
+  "output": "/home/dozirod/Documents/OpenWare/build_ninja/CMakeFiles/OpenWareEngine.dir/src/UI/DebugUI.cpp.o"
+}
+]

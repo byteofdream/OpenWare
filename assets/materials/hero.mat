@@ -1,0 +1,8 @@
+# OpenWare material file
+color = 0.95 0.90 0.76
+roughness = 0.55
+emissiveColor = 0.09 0.06 0.02
+emissiveStrength = 0.35
+useAlbedoTexture = true
+albedoTexture = ../checker.ppm
+useEmissiveTexture = false

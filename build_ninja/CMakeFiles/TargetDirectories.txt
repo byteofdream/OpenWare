@@ -1,0 +1,3 @@
+/home/dozirod/Documents/OpenWare/build_ninja/CMakeFiles/OpenWareEngine.dir
+/home/dozirod/Documents/OpenWare/build_ninja/CMakeFiles/edit_cache.dir
+/home/dozirod/Documents/OpenWare/build_ninja/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,3 @@
+/home/dozirod/Documents/OpenWare/build_sdl/CMakeFiles/OpenWareEngine.dir
+/home/dozirod/Documents/OpenWare/build_sdl/CMakeFiles/edit_cache.dir
+/home/dozirod/Documents/OpenWare/build_sdl/CMakeFiles/rebuild_cache.dir
