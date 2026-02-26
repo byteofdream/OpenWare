@@ -1,10 +1,28 @@
 cmake_minimum_required(VERSION 3.16)
-project(OpenWareEngine VERSION 0.1.0 LANGUAGES CXX)
+project(OpenWareEngine VERSION 0.1.0 LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+option(OW_BUILD_API "Build C API library in api/c" ON)
+
+# Prefer legacy libGL on Linux to avoid hard dependency on GLX import libs.
+set(OpenGL_GL_PREFERENCE LEGACY)
+# If build dir was moved across distros, stale cached OpenGL paths can break linking.
+foreach(_gl_cache_var
+    OPENGL_gl_LIBRARY
+    OPENGL_opengl_LIBRARY
+    OPENGL_glx_LIBRARY
+    OPENGL_egl_LIBRARY
+    OPENGL_gles2_LIBRARY
+    OPENGL_gles3_LIBRARY
+    OPENGL_glu_LIBRARY
+)
+    if(DEFINED ${_gl_cache_var} AND NOT EXISTS "${${_gl_cache_var}}")
+        unset(${_gl_cache_var} CACHE)
+    endif()
+endforeach()
 
 find_package(OpenGL REQUIRED)
 find_package(PkgConfig REQUIRED)
@@ -69,4 +87,8 @@ if(MSVC)
     target_compile_options(OpenWareEngine PRIVATE /W4)
 else()
     target_compile_options(OpenWareEngine PRIVATE -Wall -Wextra -Wpedantic)
+endif()
+
+if(OW_BUILD_API)
+    add_subdirectory(api/c)
 endif()

@@ -15,6 +15,10 @@ struct RenderSettings {
     bool vSync = true;
     int shadeSteps = 4;
     bool musicEnabled = true;
+    bool ps2Aesthetic = true;
+    int ps2ColorLevels = 12;
+    float ps2Jitter = 1.1f;
+    float ps2FogStrength = 0.82f;
 };
 
 class DebugUI {

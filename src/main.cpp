@@ -39,15 +39,37 @@ layout (location = 2) in vec2 aUV;
 uniform mat4 uModel;
 uniform mat4 uView;
 uniform mat4 uProjection;
+uniform vec2 uResolution;
+uniform int uPs2Aesthetic;
+uniform float uPs2Jitter;
 
 out vec3 vNormal;
 out vec2 vUV;
+out float vViewDepth;
+out vec3 vWorldPos;
 
 void main() {
     vec4 worldPos = uModel * vec4(aPos, 1.0);
+    vec4 viewPos = uView * worldPos;
+    vec4 clipPos = uProjection * viewPos;
+
+    if (uPs2Aesthetic == 1 && clipPos.w > 0.0001) {
+        vec2 safeResolution = max(uResolution, vec2(1.0));
+        vec2 snapGrid = max(safeResolution * 0.35, vec2(64.0));
+        vec2 ndc = clipPos.xy / clipPos.w;
+        ndc = floor(ndc * snapGrid) / snapGrid;
+
+        float h = fract(sin(dot(worldPos.xyz, vec3(12.9898, 78.233, 37.719))) * 43758.5453);
+        vec2 jitterNdc = (vec2(h, fract(h * 13.37)) - 0.5) * (uPs2Jitter / safeResolution);
+        ndc += jitterNdc;
+        clipPos.xy = ndc * clipPos.w;
+    }
+
     vNormal = mat3(transpose(inverse(uModel))) * aNormal;
     vUV = aUV;
-    gl_Position = uProjection * uView * worldPos;
+    vViewDepth = max(-viewPos.z, 0.0);
+    vWorldPos = worldPos.xyz;
+    gl_Position = clipPos;
 }
 )";
 
@@ -55,11 +77,14 @@ const char* kFragmentShader = R"(
 #version 330 core
 in vec3 vNormal;
 in vec2 vUV;
+in float vViewDepth;
+in vec3 vWorldPos;
 
 uniform vec3 uLightDir;
 uniform vec3 uLightColor;
 uniform vec3 uColor;
 uniform vec3 uEmissiveColor;
+uniform vec3 uViewPos;
 
 uniform sampler2D uTextureAlbedo;
 uniform sampler2D uTextureEmissive;
@@ -67,13 +92,44 @@ uniform sampler2D uTextureEmissive;
 uniform int uUseAlbedoTexture;
 uniform int uUseEmissiveTexture;
 uniform int uShadeSteps;
+uniform int uPs2Aesthetic;
 uniform float uRoughness;
 uniform float uEmissiveStrength;
+uniform float uPs2Jitter;
+uniform float uPs2ColorLevels;
+uniform float uPs2FogStrength;
 
 out vec4 FragColor;
 
+float Hash12(vec2 p) {
+    vec3 p3 = fract(vec3(p.xyx) * 0.1031);
+    p3 += dot(p3, p3.yzx + 33.33);
+    return fract((p3.x + p3.y) * p3.z);
+}
+
+float Bayer4x4(vec2 p) {
+    vec2 f = floor(mod(p, 4.0));
+    float idx = f.x + f.y * 4.0;
+    float table[16] = float[](
+         0.0,  8.0,  2.0, 10.0,
+        12.0,  4.0, 14.0,  6.0,
+         3.0, 11.0,  1.0,  9.0,
+        15.0,  7.0, 13.0,  5.0
+    );
+    return table[int(idx)] / 16.0;
+}
+
 void main() {
     vec3 normal = normalize(vNormal);
+    if (uPs2Aesthetic == 1) {
+        vec3 ddx = dFdx(vWorldPos);
+        vec3 ddy = dFdy(vWorldPos);
+        vec3 faceNormal = normalize(cross(ddx, ddy));
+        if (length(faceNormal) > 0.0001) {
+            normal = gl_FrontFacing ? faceNormal : -faceNormal;
+        }
+    }
+
     float ndl = max(dot(normal, -normalize(uLightDir)), 0.0);
 
     float roughness = uRoughness;
@@ -83,20 +139,71 @@ void main() {
     float diffuse = (1.0 - roughness * 0.35) * ndl;
 
     vec3 base = uColor;
+    vec2 sampledUv = vUV;
+    if (uPs2Aesthetic == 1) {
+        float warp = clamp(vViewDepth * 0.02, 0.0, 1.0);
+        float grid = mix(64.0, 14.0, warp);
+        sampledUv = floor(sampledUv * grid + vec2(0.5)) / grid;
+        sampledUv += normal.xy * (0.0016 + warp * 0.0024) * uPs2Jitter;
+
+        vec2 fragBucket = floor(gl_FragCoord.xy / max(1.0, 1.2 + uPs2Jitter));
+        float shimmer = Hash12(fragBucket + vec2(vViewDepth, warp * 11.0));
+        sampledUv += (shimmer - 0.5) * (0.0032 * uPs2Jitter);
+    }
+
     if (uUseAlbedoTexture == 1) {
-        base *= texture(uTextureAlbedo, vUV).rgb;
+        vec3 albedo = texture(uTextureAlbedo, sampledUv).rgb;
+        if (uPs2Aesthetic == 1) {
+            float chromaShift = (0.0012 + 0.0028 * clamp(vViewDepth * 0.015, 0.0, 1.0)) * (0.6 + uPs2Jitter * 0.25);
+            vec3 albedoR = texture(uTextureAlbedo, sampledUv + vec2(chromaShift, 0.0)).rgb;
+            vec3 albedoB = texture(uTextureAlbedo, sampledUv - vec2(chromaShift, 0.0)).rgb;
+            albedo = vec3(albedoR.r, albedo.g, albedoB.b);
+        }
+        base *= albedo;
     }
 
     float lightBand = ambient + diffuse;
     float steps = max(float(uShadeSteps), 1.0);
     lightBand = floor(lightBand * steps) / steps;
 
+    vec3 viewDir = normalize(uViewPos - vWorldPos);
+    vec3 halfDir = normalize(viewDir - normalize(uLightDir));
+    float specPower = mix(12.0, 44.0, 1.0 - clamp(roughness, 0.0, 1.0));
+    float specular = pow(max(dot(normal, halfDir), 0.0), specPower);
+    if (uPs2Aesthetic == 1) {
+        specular = floor(specular * 4.0) / 4.0;
+    }
+
     vec3 emissive = uEmissiveColor * emissiveStrength;
     if (uUseEmissiveTexture == 1) {
-        emissive *= texture(uTextureEmissive, vUV).rgb;
+        emissive *= texture(uTextureEmissive, sampledUv).rgb;
     }
 
     vec3 lit = base * lightBand * uLightColor + emissive;
+    lit += vec3(1.0, 0.96, 0.86) * specular * (0.25 + (1.0 - roughness) * 0.55);
+
+    if (uPs2Aesthetic == 1) {
+        float shadowRamp = clamp(lightBand, 0.0, 1.0);
+        vec3 shadowTint = vec3(0.76, 0.70, 0.84);
+        vec3 warmTint = vec3(1.0, 0.96, 0.88);
+        lit *= mix(shadowTint, warmTint, shadowRamp);
+
+        float levels = max(uPs2ColorLevels, 2.0);
+        float dither = (Bayer4x4(gl_FragCoord.xy) - 0.5) / levels;
+        vec2 coarsePixel = floor(gl_FragCoord.xy / 2.0);
+        float interlace = (mod(coarsePixel.y, 2.0) * 2.0 - 1.0) * 0.025;
+        lit += vec3(interlace);
+        lit = clamp(lit + dither, 0.0, 1.0);
+
+        vec3 video = pow(lit, vec3(0.4545));
+        video = floor(video * levels + 0.5) / levels;
+        lit = pow(video, vec3(2.2));
+
+        vec3 fogColor = vec3(0.43, 0.50, 0.56);
+        float fogAmount = clamp((vViewDepth - 1.0) / 30.0, 0.0, 1.0) * uPs2FogStrength;
+        lit = mix(lit, fogColor, fogAmount);
+    }
+
     FragColor = vec4(lit, 1.0);
 }
 )";

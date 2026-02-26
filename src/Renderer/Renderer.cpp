@@ -19,7 +19,11 @@ void Renderer::Render(const Scene& scene, const Camera& camera, int width, int h
     glPolygonMode(GL_FRONT_AND_BACK, settings.wireframe ? GL_LINE : GL_FILL);
 
     glViewport(0, 0, width, height);
-    glClearColor(0.72f, 0.78f, 0.86f, 1.0f);
+    if (settings.ps2Aesthetic) {
+        glClearColor(0.43f, 0.50f, 0.56f, 1.0f);
+    } else {
+        glClearColor(0.72f, 0.78f, 0.86f, 1.0f);
+    }
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     const float aspect = static_cast<float>(width) / static_cast<float>(height);
@@ -50,6 +54,11 @@ void Renderer::Render(const Scene& scene, const Camera& camera, int width, int h
         shader.SetFloat("uRoughness", material.roughness);
         shader.SetFloat("uEmissiveStrength", material.emissiveStrength);
         shader.SetInt("uShadeSteps", settings.shadeSteps);
+        shader.SetVec2("uResolution", Vec2{static_cast<float>(width), static_cast<float>(height)});
+        shader.SetInt("uPs2Aesthetic", settings.ps2Aesthetic ? 1 : 0);
+        shader.SetFloat("uPs2Jitter", settings.ps2Jitter);
+        shader.SetFloat("uPs2ColorLevels", static_cast<float>(settings.ps2ColorLevels));
+        shader.SetFloat("uPs2FogStrength", settings.ps2FogStrength);
 
         if (material.useAlbedoTexture && material.albedoTextureId != 0) {
             glActiveTexture(GL_TEXTURE0);

@@ -35,6 +35,7 @@ OpenWare is a minimal open-source 3D engine prototype in a retro low-poly style 
 - `include/Engine/Resource` - OBJ/PPM loaders
 - `include/Engine/UI` - debug HUD/settings UI
 - `src/...` - module implementations
+- `api/` - C shared library API and Python HTTP API examples
 - `assets/` - demo resources (`cube.obj`, `checker.ppm`, `.mat`, scripts)
 - `docs/` - engine system and integration docs
 
@@ -63,6 +64,19 @@ cmake --build build_ninja -j4
 
 ```bash
 ./build_ninja/OpenWareEngine
+```
+
+## API Examples
+
+The project also includes API examples in `api/`:
+
+- C API in `api/c` (shared library `openware_api`)
+- Python HTTP API in `api/python` (uses C API through `ctypes`)
+
+Run the Python API server:
+
+```bash
+python3 api/python/server.py
 ```
 
 ## Where To Write Your Game Code
@@ -105,6 +119,10 @@ Typical workflow:
 - `2` - toggle VSync
 - `3` - cycle shading steps (`2/4/8`) for stylized low-poly lighting
 - `4` - toggle background music on/off (if `assets/audio/music.wav` exists)
+- `5` - toggle PS2 aesthetic mode
+- `6` - cycle PS2 color quantization levels (`8/12/20`)
+- `7` - cycle vertex jitter amount
+- `8` - cycle fog strength
 
 ## Notes
 

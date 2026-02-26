@@ -241,6 +241,34 @@ void DebugUI::HandleEvent(const SDL_Event& event, bool& settingsOpen, bool& runn
         }
     } else if (key == SDL_SCANCODE_4) {
         settings_.musicEnabled = !settings_.musicEnabled;
+    } else if (key == SDL_SCANCODE_5) {
+        settings_.ps2Aesthetic = !settings_.ps2Aesthetic;
+    } else if (key == SDL_SCANCODE_6) {
+        if (settings_.ps2ColorLevels == 8) {
+            settings_.ps2ColorLevels = 12;
+        } else if (settings_.ps2ColorLevels == 12) {
+            settings_.ps2ColorLevels = 20;
+        } else {
+            settings_.ps2ColorLevels = 8;
+        }
+    } else if (key == SDL_SCANCODE_7) {
+        if (settings_.ps2Jitter < 0.1f) {
+            settings_.ps2Jitter = 0.6f;
+        } else if (settings_.ps2Jitter < 0.8f) {
+            settings_.ps2Jitter = 1.1f;
+        } else if (settings_.ps2Jitter < 1.3f) {
+            settings_.ps2Jitter = 1.8f;
+        } else {
+            settings_.ps2Jitter = 0.0f;
+        }
+    } else if (key == SDL_SCANCODE_8) {
+        if (settings_.ps2FogStrength < 0.3f) {
+            settings_.ps2FogStrength = 0.82f;
+        } else if (settings_.ps2FogStrength < 0.8f) {
+            settings_.ps2FogStrength = 1.0f;
+        } else {
+            settings_.ps2FogStrength = 0.18f;
+        }
     }
 }
 
@@ -328,7 +356,7 @@ void DebugUI::Render(bool settingsOpen) const {
 
     if (settingsOpen) {
         const float panelW = 560.0f;
-        const float panelH = 210.0f;
+        const float panelH = 330.0f;
         const float px = (static_cast<float>(viewportWidth_) - panelW) * 0.5f;
         const float py = (static_cast<float>(viewportHeight_) - panelH) * 0.5f;
 
@@ -343,7 +371,22 @@ void DebugUI::Render(bool settingsOpen) const {
         std::snprintf(shadeLine, sizeof(shadeLine), "3 SHADE STEPS %d", settings_.shadeSteps);
         AppendText(px + 24.0f, py + 126.0f, 2.0f, shadeLine, 0.90f, 0.97f, 1.0f, 1.0f);
         AppendText(px + 24.0f, py + 154.0f, 2.0f, settings_.musicEnabled ? "4 MUSIC ON" : "4 MUSIC OFF", 0.90f, 0.97f, 1.0f, 1.0f);
-        AppendText(px + 24.0f, py + 182.0f, 2.0f, "ESC CLOSE | F1 HIDE HUD", 0.96f, 0.84f, 0.61f, 1.0f);
+
+        AppendText(px + 24.0f, py + 182.0f, 2.0f, settings_.ps2Aesthetic ? "5 PS2 MODE ON" : "5 PS2 MODE OFF", 0.90f, 0.97f, 1.0f, 1.0f);
+
+        char colorLine[64]{};
+        std::snprintf(colorLine, sizeof(colorLine), "6 COLOR LEVELS %d", settings_.ps2ColorLevels);
+        AppendText(px + 24.0f, py + 210.0f, 2.0f, colorLine, 0.90f, 0.97f, 1.0f, 1.0f);
+
+        char jitterLine[64]{};
+        std::snprintf(jitterLine, sizeof(jitterLine), "7 JITTER %.1f", settings_.ps2Jitter);
+        AppendText(px + 24.0f, py + 238.0f, 2.0f, jitterLine, 0.90f, 0.97f, 1.0f, 1.0f);
+
+        char fogLine[64]{};
+        std::snprintf(fogLine, sizeof(fogLine), "8 FOG %.2f", settings_.ps2FogStrength);
+        AppendText(px + 24.0f, py + 266.0f, 2.0f, fogLine, 0.90f, 0.97f, 1.0f, 1.0f);
+
+        AppendText(px + 24.0f, py + 296.0f, 2.0f, "ESC CLOSE | F1 HIDE HUD", 0.96f, 0.84f, 0.61f, 1.0f);
     }
 
     if (aboutOpen_) {

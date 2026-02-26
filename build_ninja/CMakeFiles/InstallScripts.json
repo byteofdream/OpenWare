@@ -1,7 +1,8 @@
 {
 	"InstallScripts" : 
 	[
-		"/home/dozirod/Documents/OpenWare/build_ninja/cmake_install.cmake"
+		"/home/dozirod/Documents/OpenWare/build_ninja/cmake_install.cmake",
+		"/home/dozirod/Documents/OpenWare/build_ninja/api/c/cmake_install.cmake"
 	],
 	"Parallel" : false
 }

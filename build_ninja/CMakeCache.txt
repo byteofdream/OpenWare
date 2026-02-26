@@ -25,7 +25,7 @@ CMAKE_AR:FILEPATH=/usr/bin/ar
 CMAKE_BUILD_TYPE:STRING=
 
 //CXX compiler
-CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/c++
+CMAKE_CXX_COMPILER:STRING=/usr/bin/c++
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -49,6 +49,32 @@ CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 
 //Flags used by the CXX compiler during RELWITHDEBINFO builds.
 CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
+
+//C compiler
+CMAKE_C_COMPILER:STRING=/usr/bin/cc
+
+//A wrapper around 'ar' adding the appropriate '--plugin' option
+// for the GCC compiler
+CMAKE_C_COMPILER_AR:FILEPATH=/usr/bin/gcc-ar
+
+//A wrapper around 'ranlib' adding the appropriate '--plugin' option
+// for the GCC compiler
+CMAKE_C_COMPILER_RANLIB:FILEPATH=/usr/bin/gcc-ranlib
+
+//Flags used by the C compiler during all build types.
+CMAKE_C_FLAGS:STRING=
+
+//Flags used by the C compiler during DEBUG builds.
+CMAKE_C_FLAGS_DEBUG:STRING=-g
+
+//Flags used by the C compiler during MINSIZEREL builds.
+CMAKE_C_FLAGS_MINSIZEREL:STRING=-Os -DNDEBUG
+
+//Flags used by the C compiler during RELEASE builds.
+CMAKE_C_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
+
+//Flags used by the C compiler during RELWITHDEBINFO builds.
+CMAKE_C_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
 //Path to a program.
 CMAKE_DLLTOOL:FILEPATH=CMAKE_DLLTOOL-NOTFOUND
@@ -226,7 +252,7 @@ OPENGL_GLES2_INCLUDE_DIR:PATH=/usr/include
 OPENGL_GLES3_INCLUDE_DIR:PATH=/usr/include
 
 //Path to a file.
-OPENGL_GLU_INCLUDE_DIR:PATH=OPENGL_GLU_INCLUDE_DIR-NOTFOUND
+OPENGL_GLU_INCLUDE_DIR:PATH=/usr/include
 
 //Path to a file.
 OPENGL_GLX_INCLUDE_DIR:PATH=/usr/include
@@ -235,25 +261,31 @@ OPENGL_GLX_INCLUDE_DIR:PATH=/usr/include
 OPENGL_INCLUDE_DIR:PATH=/usr/include
 
 //Path to a library.
-OPENGL_egl_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libEGL.so
+OPENGL_egl_LIBRARY:FILEPATH=/usr/lib64/libEGL.so
 
 //Path to a library.
-OPENGL_gles2_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libGLESv2.so
+OPENGL_gl_LIBRARY:FILEPATH=/usr/lib64/libGL.so
 
 //Path to a library.
-OPENGL_gles3_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libGLESv2.so
+OPENGL_gles2_LIBRARY:FILEPATH=/usr/lib64/libGLESv2.so
 
 //Path to a library.
-OPENGL_glu_LIBRARY:FILEPATH=OPENGL_glu_LIBRARY-NOTFOUND
+OPENGL_gles3_LIBRARY:FILEPATH=/usr/lib64/libGLESv2.so
 
 //Path to a library.
-OPENGL_glx_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libGLX.so
+OPENGL_glu_LIBRARY:FILEPATH=/usr/lib64/libGLU.so
 
 //Path to a library.
-OPENGL_opengl_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libOpenGL.so
+OPENGL_glx_LIBRARY:FILEPATH=/usr/lib64/libGLX.so
+
+//Path to a library.
+OPENGL_opengl_LIBRARY:FILEPATH=/usr/lib64/libOpenGL.so
 
 //Path to a file.
 OPENGL_xmesa_INCLUDE_DIR:PATH=OPENGL_xmesa_INCLUDE_DIR-NOTFOUND
+
+//Build C API library in api/c
+OW_BUILD_API:BOOL=ON
 
 //Value Computed by CMake
 OpenWareEngine_BINARY_DIR:STATIC=/home/dozirod/Documents/OpenWare/build_ninja
@@ -269,6 +301,15 @@ PKG_CONFIG_ARGN:STRING=
 
 //pkg-config executable
 PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
+
+//Path to a library.
+pkgcfg_lib_LUA54_dl:FILEPATH=/usr/lib64/libdl.a
+
+//Path to a library.
+pkgcfg_lib_LUA54_lua:FILEPATH=/usr/lib64/liblua.so
+
+//Path to a library.
+pkgcfg_lib_LUA54_m:FILEPATH=/usr/lib64/libm.so
 
 //Path to a library.
 pkgcfg_lib_SDL2_MIXER_SDL2:FILEPATH=/usr/lib/x86_64-linux-gnu/libSDL2.so
@@ -291,11 +332,11 @@ CMAKE_AR-ADVANCED:INTERNAL=1
 //This is the directory where this CMakeCache.txt was created
 CMAKE_CACHEFILE_DIR:INTERNAL=/home/dozirod/Documents/OpenWare/build_ninja
 //Major version of cmake used to create the current loaded cache
-CMAKE_CACHE_MAJOR_VERSION:INTERNAL=4
+CMAKE_CACHE_MAJOR_VERSION:INTERNAL=3
 //Minor version of cmake used to create the current loaded cache
-CMAKE_CACHE_MINOR_VERSION:INTERNAL=2
+CMAKE_CACHE_MINOR_VERSION:INTERNAL=31
 //Patch version of cmake used to create the current loaded cache
-CMAKE_CACHE_PATCH_VERSION:INTERNAL=1
+CMAKE_CACHE_PATCH_VERSION:INTERNAL=10
 //Path to CMake executable.
 CMAKE_COMMAND:INTERNAL=/usr/bin/cmake
 //Path to cpack program executable.
@@ -318,6 +359,22 @@ CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
 CMAKE_CXX_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_CXX_FLAGS_RELWITHDEBINFO
 CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_C_COMPILER
+CMAKE_C_COMPILER-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_C_COMPILER_AR
+CMAKE_C_COMPILER_AR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_C_COMPILER_RANLIB
+CMAKE_C_COMPILER_RANLIB-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_C_FLAGS
+CMAKE_C_FLAGS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_C_FLAGS_DEBUG
+CMAKE_C_FLAGS_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_C_FLAGS_MINSIZEREL
+CMAKE_C_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_C_FLAGS_RELEASE
+CMAKE_C_FLAGS_RELEASE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_C_FLAGS_RELWITHDEBINFO
+CMAKE_C_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_DLLTOOL
 CMAKE_DLLTOOL-ADVANCED:INTERNAL=1
 //Path to cache edit program executable.
@@ -372,7 +429,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=2
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -384,7 +441,7 @@ CMAKE_RANLIB-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_READELF
 CMAKE_READELF-ADVANCED:INTERNAL=1
 //Path to CMake installation.
-CMAKE_ROOT:INTERNAL=/usr/share/cmake-4.2
+CMAKE_ROOT:INTERNAL=/usr/share/cmake
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS
 CMAKE_SHARED_LINKER_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS_DEBUG
@@ -418,30 +475,40 @@ CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding OpenGL
-FIND_PACKAGE_MESSAGE_DETAILS_OpenGL:INTERNAL=[/usr/lib/x86_64-linux-gnu/libOpenGL.so][/usr/lib/x86_64-linux-gnu/libGLX.so][/usr/include][ ][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_OpenGL:INTERNAL=[/usr/lib64/libOpenGL.so][/usr/lib64/libGLX.so][/usr/include][c ][v()]
 //Details about finding PkgConfig
-FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/usr/bin/pkg-config][v2.5.1()]
-LUA54_CFLAGS:INTERNAL=
+FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/usr/bin/pkg-config][v2.3.0()]
+LUA54_CFLAGS:INTERNAL=-I/usr/include
 LUA54_CFLAGS_I:INTERNAL=
 LUA54_CFLAGS_OTHER:INTERNAL=
-LUA54_FOUND:INTERNAL=
-LUA54_INCLUDEDIR:INTERNAL=
-LUA54_LIBDIR:INTERNAL=
+LUA54_FOUND:INTERNAL=1
+LUA54_INCLUDEDIR:INTERNAL=/usr/include
+LUA54_INCLUDE_DIRS:INTERNAL=/usr/include
+LUA54_LDFLAGS:INTERNAL=-llua;-lm;-ldl
+LUA54_LDFLAGS_OTHER:INTERNAL=
+LUA54_LIBDIR:INTERNAL=/usr/lib64
+LUA54_LIBRARIES:INTERNAL=lua;m;dl
+LUA54_LIBRARY_DIRS:INTERNAL=
 LUA54_LIBS:INTERNAL=
 LUA54_LIBS_L:INTERNAL=
 LUA54_LIBS_OTHER:INTERNAL=
 LUA54_LIBS_PATHS:INTERNAL=
-LUA54_MODULE_NAME:INTERNAL=
-LUA54_PREFIX:INTERNAL=
-LUA54_STATIC_CFLAGS:INTERNAL=
+LUA54_MODULE_NAME:INTERNAL=lua
+LUA54_PREFIX:INTERNAL=/usr
+LUA54_STATIC_CFLAGS:INTERNAL=-I/usr/include
 LUA54_STATIC_CFLAGS_I:INTERNAL=
 LUA54_STATIC_CFLAGS_OTHER:INTERNAL=
+LUA54_STATIC_INCLUDE_DIRS:INTERNAL=/usr/include
+LUA54_STATIC_LDFLAGS:INTERNAL=-llua;-lm;-ldl
+LUA54_STATIC_LDFLAGS_OTHER:INTERNAL=
 LUA54_STATIC_LIBDIR:INTERNAL=
+LUA54_STATIC_LIBRARIES:INTERNAL=lua;m;dl
+LUA54_STATIC_LIBRARY_DIRS:INTERNAL=
 LUA54_STATIC_LIBS:INTERNAL=
 LUA54_STATIC_LIBS_L:INTERNAL=
 LUA54_STATIC_LIBS_OTHER:INTERNAL=
 LUA54_STATIC_LIBS_PATHS:INTERNAL=
-LUA54_VERSION:INTERNAL=
+LUA54_VERSION:INTERNAL=5.4.0
 LUA54_lua5.4_INCLUDEDIR:INTERNAL=
 LUA54_lua5.4_LIBDIR:INTERNAL=
 LUA54_lua5.4_PREFIX:INTERNAL=
@@ -464,6 +531,8 @@ OPENGL_GLX_INCLUDE_DIR-ADVANCED:INTERNAL=1
 OPENGL_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENGL_egl_LIBRARY
 OPENGL_egl_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OPENGL_gl_LIBRARY
+OPENGL_gl_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENGL_gles2_LIBRARY
 OPENGL_gles2_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENGL_gles3_LIBRARY
@@ -550,16 +619,23 @@ SDL2_sdl2_INCLUDEDIR:INTERNAL=
 SDL2_sdl2_LIBDIR:INTERNAL=
 SDL2_sdl2_PREFIX:INTERNAL=
 SDL2_sdl2_VERSION:INTERNAL=
+__pkg_config_arguments_LUA54:INTERNAL=QUIET;lua
 __pkg_config_arguments_SDL2:INTERNAL=REQUIRED;sdl2
 __pkg_config_arguments_SDL2_MIXER:INTERNAL=QUIET;SDL2_mixer
 __pkg_config_checked_LUA54:INTERNAL=1
 __pkg_config_checked_SDL2:INTERNAL=1
 __pkg_config_checked_SDL2_MIXER:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_LUA54_dl
+pkgcfg_lib_LUA54_dl-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_LUA54_lua
+pkgcfg_lib_LUA54_lua-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_LUA54_m
+pkgcfg_lib_LUA54_m-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: pkgcfg_lib_SDL2_MIXER_SDL2
 pkgcfg_lib_SDL2_MIXER_SDL2-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: pkgcfg_lib_SDL2_MIXER_SDL2_mixer
 pkgcfg_lib_SDL2_MIXER_SDL2_mixer-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: pkgcfg_lib_SDL2_SDL2
 pkgcfg_lib_SDL2_SDL2-ADVANCED:INTERNAL=1
-prefix_result:INTERNAL=/usr/lib/x86_64-linux-gnu
+prefix_result:INTERNAL=/usr/lib64
 
